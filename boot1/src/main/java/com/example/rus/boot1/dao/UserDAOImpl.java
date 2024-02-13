@@ -38,9 +38,11 @@ public class UserDAOImpl implements UserDAO {
     @Override
     public void deleteUser(int id) {
         User user = entityManager.find(User.class, id);
-        if (user != null) {
-            entityManager.remove(user);
+        if (user == null) {
+            throw new NullPointerException("User with id " + id + " not found");
         }
+        entityManager.remove(user);
     }
+
 }
 

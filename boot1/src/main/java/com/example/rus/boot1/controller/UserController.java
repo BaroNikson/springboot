@@ -41,11 +41,14 @@ public class UserController {
         return "updateUser";
     }
 
-    @PostMapping("/update/{id}")
-    public String updateUser(@PathVariable int id, @ModelAttribute User updatedUser) {
-        userService.updateUser(id, updatedUser);
-        return "redirect:/users";
-    }
+
+  @PostMapping("/update")
+  public String updateUser(@ModelAttribute User updatedUser) {
+      int id = updatedUser.getId();
+      userService.updateUser(id, updatedUser);
+      return "redirect:/users";
+  }
+
 
     @GetMapping("/add")
     public String showAddUserForm(Model model) {
